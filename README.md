@@ -13,7 +13,7 @@ A simple way to use ImGui with SFML
 		sf::RenderWindow sfWindow(sf::VideoMode(1024, 780), "Demo");
 
 		// Create and initialize ImGui SFML
-		Bousk::Core::ImGui::SFML mImguiHandler;
+		ImGuiSFML mImguiHandler;
 		mImguiHandler.Init(sfWindow);
 		
 		sf::Clock frameClock;
