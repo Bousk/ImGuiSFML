@@ -18,7 +18,7 @@ ImTextureID SFML::GLHandleToImTexture(GLuint handle)
 	std::memcpy(&imTexId, &handle, sizeof(ImTextureID));
 	return imTexId;
 };
-void SFML::Init(sf::RenderTarget& target)
+void SFML::Init(const sf::RenderTarget& target)
 {
 	ImGui::CreateContext();
 
