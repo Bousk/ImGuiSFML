@@ -16,7 +16,7 @@ class ImGuiSFML
 {
 public:
 	// Initialize ImGui with the existing window
-	void Init(sf::RenderTarget& target);
+	void Init(const sf::RenderTarget& target);
 	// Call this at the beginning of each frame to reset ImGui state
 	void OnFrameBegin();
 	// Forward SFML events to ImGui
