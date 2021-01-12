@@ -1,5 +1,6 @@
 # ImGuiSFML
 A simple way to use ImGui with SFML
+Rendering is done using OpenGL2 backend provided by DearImGui
 
 	#include <ImGuiSFML/SFML.h>
 
