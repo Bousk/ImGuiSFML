@@ -1,6 +1,7 @@
 # ImGuiSFML
-A simple way to use ImGui with SFML
-Rendering is done using OpenGL2 backend provided by DearImGui
+A simple way to use ImGui with SFML.
+
+Rendering is done using OpenGL2 backend available in DearImGui itself.
 
 	#include <ImGuiSFML/SFML.h>
 
