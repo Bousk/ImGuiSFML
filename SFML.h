@@ -11,8 +11,6 @@ namespace sf {
 	class Event;
 	class RenderTarget;
 }
-struct ImDrawData;
-struct ImGuiContext;
 
 class ImGuiSFML
 {
