@@ -18,6 +18,26 @@ ImTextureID SFML::GLHandleToImTexture(GLuint handle)
 	std::memcpy(&imTexId, &handle, sizeof(ImTextureID));
 	return imTexId;
 };
+void SFML::DisplayTexture(const sf::Texture& texture)
+{
+	DisplayTexture(texture, sf::Rect<unsigned int>(sf::Vector2u(0, 0), texture.getSize()));
+}
+void SFML::DisplayTexture(const sf::Texture& texture, const sf::Rect<unsigned int>& texturePart)
+{
+	DisplayTexture(texture, texturePart, sf::Vector2u(texturePart.width, texturePart.height));
+}
+void SFML::DisplayTexture(const sf::Texture& texture, const sf::Rect<unsigned int>& texturePart, const sf::Vector2u& renderSize)
+{
+	const GLuint handle = texture.getNativeHandle();
+	if (handle)
+	{
+		const ImTextureID imId = GLHandleToImTexture(handle);
+		const ImVec2 size(static_cast<float>(renderSize.x), static_cast<float>(renderSize.y));
+		const ImVec2 uv0(texturePart.left * 1.f / texture.getSize().x, texturePart.top * 1.f / texture.getSize().y);
+		const ImVec2 uv1((texturePart.left + texturePart.width) * 1.f / texture.getSize().x, (texturePart.top + texturePart.height) * 1.f / texture.getSize().y);
+		ImGui::Image(imId, size, uv0, uv1, ImVec4(1,1,1,1), ImColor(255,0,0));
+	}
+}
 void SFML::Init(const sf::RenderTarget& target)
 {
 	ImGui::CreateContext();

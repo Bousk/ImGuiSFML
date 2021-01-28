@@ -28,6 +28,10 @@ public:
 	// Destroy ImGui context
 	void Release();
 
+	static void DisplayTexture(const sf::Texture& texture);
+	static void DisplayTexture(const sf::Texture& texture, const sf::Rect<unsigned int>& texturePart);
+	static void DisplayTexture(const sf::Texture& texture, const sf::Rect<unsigned int>& texturePart, const sf::Vector2u& renderSize);
+
 	static GLuint ImTextureToGLHandle(ImTextureID textureID);
 	static ImTextureID GLHandleToImTexture(GLuint handle);
 
