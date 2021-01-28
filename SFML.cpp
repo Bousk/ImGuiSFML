@@ -6,27 +6,27 @@
 #include <backends/imgui_impl_opengl2.h>
 #include <imgui.h>
 
-GLuint SFML::ImTextureToGLHandle(ImTextureID textureID)
+GLuint ImGuiSFML::ImTextureToGLHandle(ImTextureID textureID)
 {
 	GLuint glTextureHandle;
 	std::memcpy(&glTextureHandle, &textureID, sizeof(GLuint));
 	return glTextureHandle;
 };
-ImTextureID SFML::GLHandleToImTexture(GLuint handle)
+ImTextureID ImGuiSFML::GLHandleToImTexture(GLuint handle)
 {
 	ImTextureID imTexId;
 	std::memcpy(&imTexId, &handle, sizeof(ImTextureID));
 	return imTexId;
 };
-void SFML::DisplayTexture(const sf::Texture& texture)
+void ImGuiSFML::DisplayTexture(const sf::Texture& texture)
 {
 	DisplayTexture(texture, sf::Rect<unsigned int>(sf::Vector2u(0, 0), texture.getSize()));
 }
-void SFML::DisplayTexture(const sf::Texture& texture, const sf::Rect<unsigned int>& texturePart)
+void ImGuiSFML::DisplayTexture(const sf::Texture& texture, const sf::Rect<unsigned int>& texturePart)
 {
 	DisplayTexture(texture, texturePart, sf::Vector2u(texturePart.width, texturePart.height));
 }
-void SFML::DisplayTexture(const sf::Texture& texture, const sf::Rect<unsigned int>& texturePart, const sf::Vector2u& renderSize)
+void ImGuiSFML::DisplayTexture(const sf::Texture& texture, const sf::Rect<unsigned int>& texturePart, const sf::Vector2u& renderSize)
 {
 	const GLuint handle = texture.getNativeHandle();
 	if (handle)
@@ -38,7 +38,7 @@ void SFML::DisplayTexture(const sf::Texture& texture, const sf::Rect<unsigned in
 		ImGui::Image(imId, size, uv0, uv1, ImVec4(1,1,1,1), ImColor(255,0,0));
 	}
 }
-void SFML::Init(const sf::RenderTarget& target)
+void ImGuiSFML::Init(const sf::RenderTarget& target)
 {
 	ImGui::CreateContext();
 
@@ -83,7 +83,7 @@ void SFML::Init(const sf::RenderTarget& target)
 	io.KeyMap[ImGuiKey_Y] = sf::Keyboard::Y;
 	io.KeyMap[ImGuiKey_Z] = sf::Keyboard::Z;
 }
-void SFML::OnFrameBegin()
+void ImGuiSFML::OnFrameBegin()
 {
 	ImGuiIO& io = ImGui::GetIO();
 	io.ClearInputCharacters();
@@ -91,7 +91,7 @@ void SFML::OnFrameBegin()
 	io.BackendFlags &= ~ImGuiBackendFlags_HasGamepad;
 	// TODO : Gamepad
 }
-void SFML::OnEvent(const sf::Event& evt)
+void ImGuiSFML::OnEvent(const sf::Event& evt)
 {
 	ImGuiIO& io = ImGui::GetIO();
 	switch (evt.type)
@@ -135,7 +135,7 @@ void SFML::OnEvent(const sf::Event& evt)
 			break;
 	}
 }
-void SFML::Update(std::chrono::milliseconds dt)
+void ImGuiSFML::Update(std::chrono::milliseconds dt)
 {
 	ImGuiIO& io = ImGui::GetIO();
 
@@ -144,7 +144,7 @@ void SFML::Update(std::chrono::milliseconds dt)
 
 	ImGui::NewFrame();
 }
-void SFML::Draw(sf::RenderTarget& target) const
+void ImGuiSFML::Draw(sf::RenderTarget& target) const
 {
 	ImGuiIO& io = ImGui::GetIO();
 
@@ -153,7 +153,7 @@ void SFML::Draw(sf::RenderTarget& target) const
 	ImGui::Render();
 	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 }
-void SFML::Release()
+void ImGuiSFML::Release()
 {
 	ImGui::DestroyContext();
 }
